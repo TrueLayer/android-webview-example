@@ -10,7 +10,6 @@ import android.webkit.WebViewClient
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
-
 class WebViewActivity : AppCompatActivity() {
 
     private lateinit var webView: WebView
@@ -18,6 +17,8 @@ class WebViewActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_web_view)
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         // Assuming your view contains a Webview with "myCustomWebView" as Id.
         webView = findViewById(R.id.myCustomWebView)
@@ -35,7 +36,7 @@ class WebViewActivity : AppCompatActivity() {
     }
 
     fun showMessage(message: String?) {
-        Toast.makeText(this.applicationContext, message, Toast.LENGTH_SHORT)
+        Toast.makeText(this.applicationContext, message, Toast.LENGTH_SHORT).show()
     }
 
     private val webClient = object : WebViewClient() {
