@@ -13,9 +13,7 @@
 		BE490D8D2875AA9000892568 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE490D8B2875AA9000892568 /* Main.storyboard */; };
 		BE490D8F2875AA9100892568 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE490D8E2875AA9100892568 /* Assets.xcassets */; };
 		BE490D922875AA9100892568 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE490D902875AA9100892568 /* LaunchScreen.storyboard */; };
-		BE490D9D2875AA9200892568 /* WebViewExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE490D9C2875AA9200892568 /* WebViewExampleTests.swift */; };
-		BE490DA72875AA9200892568 /* WebViewExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE490DA62875AA9200892568 /* WebViewExampleUITests.swift */; };
-		BE490DA92875AA9200892568 /* WebViewExampleUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE490DA82875AA9200892568 /* WebViewExampleUITestsLaunchTests.swift */; };
+		DE85B9352902EB0E008A791E /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE85B9342902EB0E008A791E /* WebViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,10 +43,8 @@
 		BE490D912875AA9100892568 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BE490D932875AA9100892568 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE490D982875AA9200892568 /* WebViewExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WebViewExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		BE490D9C2875AA9200892568 /* WebViewExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewExampleTests.swift; sourceTree = "<group>"; };
 		BE490DA22875AA9200892568 /* WebViewExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WebViewExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		BE490DA62875AA9200892568 /* WebViewExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewExampleUITests.swift; sourceTree = "<group>"; };
-		BE490DA82875AA9200892568 /* WebViewExampleUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewExampleUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		DE85B9342902EB0E008A791E /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,8 +76,6 @@
 			isa = PBXGroup;
 			children = (
 				BE490D842875AA9000892568 /* WebViewExample */,
-				BE490D9B2875AA9200892568 /* WebViewExampleTests */,
-				BE490DA52875AA9200892568 /* WebViewExampleUITests */,
 				BE490D832875AA9000892568 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -101,30 +95,14 @@
 			children = (
 				BE490D852875AA9000892568 /* AppDelegate.swift */,
 				BE490D872875AA9000892568 /* SceneDelegate.swift */,
-				BE490D892875AA9000892568 /* ViewController.swift */,
 				BE490D8B2875AA9000892568 /* Main.storyboard */,
 				BE490D8E2875AA9100892568 /* Assets.xcassets */,
 				BE490D902875AA9100892568 /* LaunchScreen.storyboard */,
 				BE490D932875AA9100892568 /* Info.plist */,
+				BE490D892875AA9000892568 /* ViewController.swift */,
+				DE85B9342902EB0E008A791E /* WebViewController.swift */,
 			);
 			path = WebViewExample;
-			sourceTree = "<group>";
-		};
-		BE490D9B2875AA9200892568 /* WebViewExampleTests */ = {
-			isa = PBXGroup;
-			children = (
-				BE490D9C2875AA9200892568 /* WebViewExampleTests.swift */,
-			);
-			path = WebViewExampleTests;
-			sourceTree = "<group>";
-		};
-		BE490DA52875AA9200892568 /* WebViewExampleUITests */ = {
-			isa = PBXGroup;
-			children = (
-				BE490DA62875AA9200892568 /* WebViewExampleUITests.swift */,
-				BE490DA82875AA9200892568 /* WebViewExampleUITestsLaunchTests.swift */,
-			);
-			path = WebViewExampleUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -261,6 +239,7 @@
 				BE490D8A2875AA9000892568 /* ViewController.swift in Sources */,
 				BE490D862875AA9000892568 /* AppDelegate.swift in Sources */,
 				BE490D882875AA9000892568 /* SceneDelegate.swift in Sources */,
+				DE85B9352902EB0E008A791E /* WebViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,7 +247,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE490D9D2875AA9200892568 /* WebViewExampleTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,8 +254,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE490DA72875AA9200892568 /* WebViewExampleUITests.swift in Sources */,
-				BE490DA92875AA9200892568 /* WebViewExampleUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,6 +415,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6X6F37SBAW;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WebViewExample/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -466,6 +443,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6X6F37SBAW;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WebViewExample/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

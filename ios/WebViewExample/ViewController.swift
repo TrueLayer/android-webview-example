@@ -1,60 +1,118 @@
-//
-//  ViewController.swift
-//  WebViewExample
-//
-//  Created by Sébastien Kovacs on 06/07/2022.
-//
-
 import UIKit
 import SafariServices
 
-class ViewController: UIViewController {
+final class ViewController: UIViewController {
+  private var rootView: View {
+    view as! View
+  }
   
-  @IBOutlet weak var linkInput: UITextView!
-
-  @IBOutlet weak var openInSafariVCBtn: UIButton!
+  override func loadView() {
+    self.view = View()
+  }
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    // Default links to our test page to trigger various bank links
-    linkInput.text = "https://payment.truelayer-sandbox.com/test-redirect"
-    linkInput.layer.cornerRadius = 5
-    linkInput.layer.borderColor = UIColor.systemBlue.cgColor
-    linkInput.layer.borderWidth = 1
-    
-    openInSafariVCBtn.titleLabel?.textAlignment = .center
-    openInSafariVCBtn.titleLabel?.numberOfLines = 0
-  }
-
-  @IBAction func openInSafariVCTouched(_ sender: Any) {
-    guard let url = getURL() else {
-      return
-    }
-    
-    let safariVC = SFSafariViewController(url: url)
-      present(safariVC, animated: true, completion: nil)
+    setupInteractions()
   }
   
-  private func getURL() -> URL? {
-    guard let url = URL(string: linkInput.text) else {
-      self.showAlert()
-      return nil
+  func setupInteractions() {
+    rootView.didTapSafariButton = { [weak self] in
+      guard let self = self, let url = URL(string: self.rootView.inputField.text) else {
+        return
+      }
+      
+      let safariVC = SFSafariViewController(url: url)
+      self.present(safariVC, animated: true, completion: nil)
     }
     
-    if !UIApplication.shared.canOpenURL(url) {
-      self.showAlert()
-      return nil
+    rootView.didTapWebViewButton = { [weak self] in
+      guard let self = self, let url = URL(string: self.rootView.inputField.text) else {
+        return
+      }
+      
+      let viewController = WebViewController(url: url)
+      self.present(viewController, animated: true, completion: nil)
     }
-    
-    return url
   }
-  
-  private func showAlert() {
-    let alert = UIAlertController(title: "Invalid URL", message: "Please enter a valid URL before opening the webview", preferredStyle: .alert)
-    alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default))
-    self.present(alert, animated: true, completion: nil)
-  }
-  
 }
 
+final class View: UIView {
+  let inputField = UITextView()
+  let safariButton = UIButton()
+  let webViewButton = UIButton()
+  
+  var didTapSafariButton: (() -> Void)?
+  var didTapWebViewButton: (() -> Void)?
+  
+  override init(frame: CGRect) {
+    super.init(frame: .zero)
+    
+    setup()
+    style()
+    layout()
+  }
+  
+  required init?(coder: NSCoder) {
+    nil
+  }
+  
+  func setup() {
+    addSubview(inputField)
+    addSubview(safariButton)
+    addSubview(webViewButton)
+    
+    safariButton.addTarget(self, action: #selector(tappedSafariButton), for: .touchUpInside)
+    webViewButton.addTarget(self, action: #selector(tappedWebViewButton), for: .touchUpInside)
+  }
+  
+  func style() {
+    backgroundColor = .systemBackground
+    
+    inputField.layer.borderColor = UIColor.systemGray.cgColor
+    inputField.layer.borderWidth = 1
+    inputField.text = "https://payment.truelayer-sandbox.com/test-redirect"
+    
+    safariButton.setTitle("Open Safari", for: .normal)
+    safariButton.backgroundColor = .systemBlue
+    
+    webViewButton.setTitle("Open WebView", for: .normal)
+    webViewButton.backgroundColor = .systemPurple
+  }
+  
+  func layout() {
+    inputField.translatesAutoresizingMaskIntoConstraints = false
+    NSLayoutConstraint.activate([
+      inputField.widthAnchor.constraint(equalToConstant: 250),
+      inputField.heightAnchor.constraint(equalToConstant: 100),
+      inputField.centerXAnchor.constraint(equalTo: centerXAnchor),
+      inputField.centerYAnchor.constraint(equalTo: topAnchor, constant: 150)
+    ])
+    
+    safariButton.translatesAutoresizingMaskIntoConstraints = false
+    NSLayoutConstraint.activate([
+      safariButton.widthAnchor.constraint(equalToConstant: 160),
+      safariButton.heightAnchor.constraint(equalToConstant: 40),
+      safariButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+      safariButton.centerYAnchor.constraint(equalTo: centerYAnchor),
+    ])
+
+    webViewButton.translatesAutoresizingMaskIntoConstraints = false
+    NSLayoutConstraint.activate([
+      webViewButton.widthAnchor.constraint(equalToConstant: 160),
+      webViewButton.heightAnchor.constraint(equalToConstant: 40),
+      webViewButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+      webViewButton.topAnchor.constraint(equalTo: safariButton.bottomAnchor, constant: 30),
+    ])
+  }
+  
+  @objc
+  func tappedSafariButton() {
+    didTapSafariButton?()
+  }
+  
+  @objc
+  func tappedWebViewButton() {
+    didTapWebViewButton?()
+  }
+}
