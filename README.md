@@ -46,7 +46,7 @@ override fun shouldOverrideUrlLoading(
 
 - Attempt to open the bank's URL in non-browser apps
 
-When opening a URL that should redirect the user to a bank app you canc create an intent that will launch directly in any non-browser app that can handle the URL. If this fails and an exception is thrown that means the bank's app is not installed and you will have to open the URL in a browser.
+When opening a URL that should redirect the user to a bank app you can create an intent that will launch directly in any non-browser app that can handle the URL. If this fails and an exception is thrown that means the bank's app is not installed and you will have to open the URL in a browser.
 ``` kotlin
 private fun openUri(uri: Uri) {
     try {
