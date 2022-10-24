@@ -1,7 +1,14 @@
 package com.example.testredirect
 
+import android.content.ActivityNotFoundException
 import android.content.Intent
+import android.content.Intent.ACTION_VIEW
+import android.content.Intent.CATEGORY_BROWSABLE
+import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
+import android.content.Intent.FLAG_ACTIVITY_REQUIRE_NON_BROWSER
 import android.graphics.Bitmap
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.webkit.WebResourceRequest
 import android.webkit.WebSettings
@@ -64,11 +71,31 @@ class WebViewActivity : AppCompatActivity() {
             println(uri)
             // replace "truelayer" with whatever host you expect to load within the webview
             if (uri != null && uri.host?.contains("truelayer") == false) {
-                val intent = Intent(Intent.ACTION_VIEW, uri)
-                startActivity(intent)
+                openUri(uri)
                 return true
             }
             return false
+        }
+
+        private fun openUri(uri: Uri) {
+            try {
+                val intent = Intent(ACTION_VIEW, uri).apply {
+                    // The URL should either launch directly in a non-browser app (if it's
+                    // the default), or in the disambiguation dialog.
+                    addCategory(CATEGORY_BROWSABLE)
+                    flags = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                        FLAG_ACTIVITY_NEW_TASK or FLAG_ACTIVITY_REQUIRE_NON_BROWSER
+                    } else {
+                        FLAG_ACTIVITY_NEW_TASK
+                    }
+                }
+                startActivity(intent)
+            } catch (e: ActivityNotFoundException) {
+                // Only browser apps are available, or a browser is the default.
+                // So you will have to open the website
+                val intent = Intent(ACTION_VIEW, uri)
+                startActivity(intent)
+            }
         }
     }
 }
