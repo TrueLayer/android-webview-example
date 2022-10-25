@@ -26,7 +26,7 @@ The android example shows how to present the `HPP` using SFSafariViewController 
 
 <img src="ios_sfvc_screenshot.png" width="200"  alt="ios_screenhot"/>
 
-<img src="ios_sfvc_screenshot2.png" width="200"  alt="ios_screenhot"/>
+<img src="ios_sfvc_screenshot_2.png" width="200"  alt="ios_screenhot"/>
 
 <br/>
 
