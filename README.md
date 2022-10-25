@@ -20,9 +20,13 @@ Requirements:
 
 ## iOS
 
+The android example shows how to present the `HPP` using SFSafariViewController (recommended), or a webview.
+
 <img src="ios_home_screenshot.png" width="200"  alt="ios_home_screenhot"/>
 
 <img src="ios_sfvc_screenshot.png" width="200"  alt="ios_screenhot"/>
+
+<img src="ios_sfvc_screenshot2.png" width="200"  alt="ios_screenhot"/>
 
 <br/>
 
