@@ -38,7 +38,7 @@ class WebViewActivity : AppCompatActivity() {
         webView.webViewClient = webClient
 
         // Default to a TrueLayer page that can easily "trigger" application links from banks
-        val url = "https://payment.truelayer-sandbox.com/test-redirect"
+        val url = intent.getStringExtra("LINK") ?: "https://payment.truelayer-sandbox.com/test-redirect"
         webView.loadUrl(url)
     }
 
@@ -70,7 +70,7 @@ class WebViewActivity : AppCompatActivity() {
             println("shouldOverrideUrlLoading executing....")
             println(uri)
             // replace "truelayer" with whatever host you expect to load within the webview
-            if (uri != null && uri.host?.contains("truelayer") == false) {
+            if (uri != null && uri.host?.contains("truelayer.com") == false && uri.host?.contains("okta") == false) {
                 openUri(uri)
                 return true
             }
