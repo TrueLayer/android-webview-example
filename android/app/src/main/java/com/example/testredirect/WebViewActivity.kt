@@ -70,7 +70,7 @@ class WebViewActivity : AppCompatActivity() {
             println("shouldOverrideUrlLoading executing....")
             println(uri)
             // replace "truelayer" with whatever host you expect to load within the webview
-            if (uri != null && uri.host?.contains("truelayer.com") == false && uri.host?.contains("okta") == false) {
+            if (uri != null && uri.host?.contains("truelayer.com") == false) {
                 openUri(uri)
                 return true
             }
