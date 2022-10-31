@@ -41,6 +41,7 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+    // This is recommended only for GBP payments where the majority of providers support App2App
     private fun loadCustomTab(url: String) {
         try {
             // Attempts to start custom tab with Google Chrome

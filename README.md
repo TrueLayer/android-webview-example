@@ -71,7 +71,7 @@ private fun openUri(uri: Uri) {
 ```
 
 ### Using Custom Tabs
-Custom Tabs by default will use the user's preferred browser app but not every browser supports app links. To negate this you can specify that Google Chrome is used for your custom tabs and fallback to the default browser if it isn't available.
+Custom Tabs by default will use the user's preferred browser app but not every browser supports app links. To negate this you can specify that Google Chrome is used for your custom tabs and fallback to the default browser if it isn't available. This is recommended only for GBP payments where the majority of providers support App2App.
 
 ```kotlin
 private fun loadCustomTab(url: String) {
