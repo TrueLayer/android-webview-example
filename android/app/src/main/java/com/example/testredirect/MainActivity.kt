@@ -9,7 +9,6 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.browser.customtabs.CustomTabsIntent
 
-
 class MainActivity : AppCompatActivity() {
 
     private lateinit var customTabButton: Button
@@ -20,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        customTabButton = findViewById(R.id.LoadchromeCustomTabButton)
+        customTabButton = findViewById(R.id.loadCustomTabButton)
         customTabButton.setOnClickListener {
             loadCustomTab(getLink())
         }
@@ -42,15 +41,23 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+    // This is recommended only for GBP payments where the majority of providers support App2App
     private fun loadCustomTab(url: String) {
-        println("Loading Custom Tab")
-        val builder = CustomTabsIntent.Builder()
-        val customTabsIntent = builder.build()
-        customTabsIntent.launchUrl(this, Uri.parse(url))
+        try {
+            // Attempts to start custom tab with Google Chrome
+            val builder = CustomTabsIntent.Builder()
+            val customTabsIntent = builder.build()
+            customTabsIntent.intent.setPackage("com.android.chrome")
+            customTabsIntent.launchUrl(this, Uri.parse(url))
+        } catch (e: Exception) {
+            // If Google Chrome isn't available then uses the default browser
+            val builder = CustomTabsIntent.Builder()
+            val customTabsIntent = builder.build()
+            customTabsIntent.launchUrl(this, Uri.parse(url))
+        }
     }
 
-    private fun getLink() : String {
+    private fun getLink(): String {
         return textInput.text.toString()
     }
-
 }
