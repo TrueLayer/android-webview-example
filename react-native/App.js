@@ -70,7 +70,6 @@ const WebViewScreen = ({ navigation, route }) => {
     <WebView
       source={{ uri: url }}
       onNavigationStateChange={this.handleWebViewNavigationStateChange}
-      setSupportMultipleWindows={false} // required to handle all urls on navigation
     />
   );
 };
