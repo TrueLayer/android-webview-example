@@ -114,17 +114,7 @@ Requirements:
 - Node 16+
 
 ### Suggestions
-When using a React Native WebView the success of app2app depends on the user's default browser. The WebView by default will open app links correctly but any link that opens a new tab will be sent to the user's browser. To prevent this you can disable multiple windows.
-
-``` html
-<WebView
-    source={{ uri: url }}
-    onNavigationStateChange={this.handleWebViewNavigationStateChange}
-    setSupportMultipleWindows={false}
-/>
-```
-
-After disabling multiple windows you'll need to handle all app links manually. This can be done by adding a `onNavigationStateChange` listener and opening any non-hosted-payments-page url with the `Linking` class.
+When using a React Native WebView you can handle all app links manually to ensure app2app will work successfully. This can be done by adding a `onNavigationStateChange` listener and opening any non-hosted-payments-page url with the `Linking` class.
 ``` javascript
 handleWebViewNavigationStateChange = (newNavState) => {
     const { url } = newNavState;
