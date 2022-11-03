@@ -11,22 +11,25 @@ import androidx.browser.customtabs.CustomTabsIntent
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var customTabButton: Button
-    private lateinit var webViewButton: Button
     private lateinit var textInput: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        customTabButton = findViewById(R.id.loadCustomTabButton)
+        val customTabButton = findViewById<Button>(R.id.loadCustomTabButton)
         customTabButton.setOnClickListener {
             loadCustomTab(getLink())
         }
 
-        webViewButton = findViewById(R.id.loadWebViewButton)
+        val webViewButton = findViewById<Button>(R.id.loadWebViewButton)
         webViewButton.setOnClickListener {
             loadWebView(getLink())
+        }
+
+        val browserButton = findViewById<Button>(R.id.browserButton)
+        browserButton.setOnClickListener {
+            openInBrowser(getLink())
         }
 
         textInput = findViewById(R.id.edit_text_link)
@@ -54,6 +57,19 @@ class MainActivity : AppCompatActivity() {
             val builder = CustomTabsIntent.Builder()
             val customTabsIntent = builder.build()
             customTabsIntent.launchUrl(this, Uri.parse(url))
+        }
+    }
+
+    private fun openInBrowser(url: String) {
+        try {
+            // Attempts to open in Google Chrome
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+            intent.setPackage("com.android.chrome")
+            startActivity(intent)
+        } catch (e: Exception) {
+            // If Google Chrome isn't available then uses the default browser
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+            startActivity(intent)
         }
     }
 

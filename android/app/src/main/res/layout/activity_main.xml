@@ -19,6 +19,15 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
+        android:id="@+id/browserButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Open In Browser"
+        app:layout_constraintBottom_toTopOf="@id/loadCustomTabButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
         android:id="@+id/loadCustomTabButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -32,7 +41,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Open In WebView"
-        app:layout_constraintBottom_toTopOf="@+id/loadCustomTabButton"
+        app:layout_constraintBottom_toTopOf="@+id/browserButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
