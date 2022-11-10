@@ -95,7 +95,8 @@ final class WebView: UIView {
 
 extension WebView: WKNavigationDelegate {
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-        if let url = navigationAction.request.url, url.scheme != "http" && url.scheme != "https" {
+      print(navigationAction.request.url);
+      if let url = navigationAction.request.url, !url.absoluteURL.description.contains("payment.truelayer-sandbox.com") {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
             decisionHandler(.cancel)
         } else {
@@ -106,7 +107,8 @@ extension WebView: WKNavigationDelegate {
 
 extension WebView: WKUIDelegate {
     func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
-        if let url = navigationAction.request.url, url.scheme != "http" && url.scheme != "https" && url.scheme != "about" {
+      print(navigationAction.request.url);
+        if let url = navigationAction.request.url, !url.absoluteURL.description.contains("payment.truelayer-sandbox.com") {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
             return nil
         } else {
