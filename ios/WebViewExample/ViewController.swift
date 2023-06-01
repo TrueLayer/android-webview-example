@@ -22,8 +22,16 @@ final class ViewController: UIViewController {
         return
       }
       
-      let safariVC = SFSafariViewController(url: url)
-      self.present(safariVC, animated: true, completion: nil)
+      UIApplication.shared.open(url)
+    }
+    
+    rootView.didTapSafariVCButton = { [weak self] in
+      guard let self = self, let url = URL(string: self.rootView.inputField.text) else {
+        return
+      }
+      
+        let safariVC = SFSafariViewController(url: url)
+        self.present(safariVC, animated: true, completion: nil)
     }
     
     rootView.didTapWebViewButton = { [weak self] in
@@ -37,12 +45,16 @@ final class ViewController: UIViewController {
   }
 }
 
+// MARK: - View
+
 final class View: UIView {
   let inputField = UITextView()
   let safariButton = UIButton()
+  let safariVCButton = UIButton()
   let webViewButton = UIButton()
   
   var didTapSafariButton: (() -> Void)?
+  var didTapSafariVCButton: (() -> Void)?
   var didTapWebViewButton: (() -> Void)?
   
   override init(frame: CGRect) {
@@ -60,9 +72,11 @@ final class View: UIView {
   func setup() {
     addSubview(inputField)
     addSubview(safariButton)
+    addSubview(safariVCButton)
     addSubview(webViewButton)
     
     safariButton.addTarget(self, action: #selector(tappedSafariButton), for: .touchUpInside)
+    safariVCButton.addTarget(self, action: #selector(tappedSafariVCButton), for: .touchUpInside)
     webViewButton.addTarget(self, action: #selector(tappedWebViewButton), for: .touchUpInside)
   }
   
@@ -76,7 +90,10 @@ final class View: UIView {
     safariButton.setTitle("Open Safari", for: .normal)
     safariButton.backgroundColor = .systemBlue
     
-    webViewButton.setTitle("Open WebView", for: .normal)
+    safariVCButton.setTitle("SafariViewController", for: .normal)
+    safariVCButton.backgroundColor = .systemPink
+    
+    webViewButton.setTitle("WebView", for: .normal)
     webViewButton.backgroundColor = .systemPurple
   }
   
@@ -91,24 +108,37 @@ final class View: UIView {
     
     safariButton.translatesAutoresizingMaskIntoConstraints = false
     NSLayoutConstraint.activate([
-      safariButton.widthAnchor.constraint(equalToConstant: 160),
+      safariButton.widthAnchor.constraint(equalToConstant: 200),
       safariButton.heightAnchor.constraint(equalToConstant: 40),
       safariButton.centerXAnchor.constraint(equalTo: centerXAnchor),
       safariButton.centerYAnchor.constraint(equalTo: centerYAnchor),
     ])
+    
+    safariVCButton.translatesAutoresizingMaskIntoConstraints = false
+    NSLayoutConstraint.activate([
+      safariVCButton.widthAnchor.constraint(equalToConstant: 200),
+      safariVCButton.heightAnchor.constraint(equalToConstant: 40),
+      safariVCButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+      safariVCButton.topAnchor.constraint(equalTo: safariButton.bottomAnchor, constant: 30),
+    ])
 
     webViewButton.translatesAutoresizingMaskIntoConstraints = false
     NSLayoutConstraint.activate([
-      webViewButton.widthAnchor.constraint(equalToConstant: 160),
+      webViewButton.widthAnchor.constraint(equalToConstant: 200),
       webViewButton.heightAnchor.constraint(equalToConstant: 40),
       webViewButton.centerXAnchor.constraint(equalTo: centerXAnchor),
-      webViewButton.topAnchor.constraint(equalTo: safariButton.bottomAnchor, constant: 30),
+      webViewButton.topAnchor.constraint(equalTo: safariVCButton.bottomAnchor, constant: 30),
     ])
   }
   
   @objc
   func tappedSafariButton() {
     didTapSafariButton?()
+  }
+  
+  @objc
+  func tappedSafariVCButton() {
+    didTapSafariVCButton?()
   }
   
   @objc

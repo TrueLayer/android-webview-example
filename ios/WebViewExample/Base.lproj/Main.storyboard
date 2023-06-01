@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -25,10 +26,11 @@
                                     <action selector="openInSafariVCTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vtF-PR-8KO"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Default Link" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="HFl-xP-LGx">
-                                <rect key="frame" x="88" y="158" width="240" height="128"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="HFl-xP-LGx">
+                                <rect key="frame" x="88" y="158" width="240" height="300.5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <string key="text">https://payment.t7r.dev/payments#payment_id=5eb968ba-052f-426a-b2b1-be53f7f62ef9&amp;resource_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6InBheW1lbnQiLCJjbGllbnRfaWQiOiJwZW5ueWRldi1lNTkzOGEiLCJqdGkiOiI1ZWI5NjhiYS0wNTJmLTQyNmEtYjJiMS1iZTUzZjdmNjJlZjkiLCJuYmYiOjE2ODU2MTA0NTAsImV4cCI6MTY4NTYxMTM1MCwiaXNzIjoiaHR0cHM6Ly9hcGkudDdyLmRldiIsImF1ZCI6Imh0dHBzOi8vYXBpLnQ3ci5kZXYifQ.Cu2Z2cNHAXjzvaiFrGTkNcQn7Nq28iQa57zAugOhdQo&amp;return_uri=truelayerwebviewtest%3A%2F%2Fhome</string>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -63,7 +65,7 @@
     </scenes>
     <resources>
         <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
