@@ -90,7 +90,7 @@ private fun loadCustomTab(url: String) {
 
 ## iOS
 
-The android example shows how to present the `HPP` using SFSafariViewController (recommended), or a webview.
+The iOS example shows how to present the `HPP` using `SFSafariViewController` via `SafariServices` (recommended), or a `WKWebView` via `WebKit`.
 
 <img src="ios_home_screenshot.png" width="200"  alt="ios_home_screenhot"/>
 
