@@ -88,6 +88,24 @@ private fun loadCustomTab(url: String) {
 }
 ```
 
+### Using Browser
+When opening the HPP in the user's browser the default browser will be launched but not every browser supports app links. You can force the HPP to be launched in Google Chrome to get past this. This is recommended only for GBP payments where the majority of providers support App2App.
+
+```kotlin
+private fun openInBrowser(url: String) {
+    try {
+        // Attempts to open in Google Chrome
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+        intent.setPackage("com.android.chrome")
+        startActivity(intent)
+    } catch (e: Exception) {
+        // If Google Chrome isn't available then uses the default browser
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+        startActivity(intent)
+    }
+}
+```
+
 ## iOS
 
 The iOS example shows how to present the `HPP` using `SFSafariViewController` via `SafariServices` (recommended), or a `WKWebView` via `WebKit`.
